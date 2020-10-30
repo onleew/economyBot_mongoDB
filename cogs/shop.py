@@ -74,7 +74,7 @@ class shop(commands.Cog):
 			if self.collec.find_one({"guild_id" : ctx.guild.id, "user_id" : ctx.author.id})["cash"] < self.coll.find_one({"guild_id" : ctx.guild.id, "role_id" : role.id})["cost"]:
 				await ctx.send("[ERROR] - you don't have any money to buy role")
 			else:
-				self.coll.update_one({"guild_id" : ctx.guild.id, "user_id" : ctx.author.id}, {"$inc" : {"cash" : -self.coll.find_one({"guild_id" : ctx.guild.id, "role_id" : role.id})["cost"]}})
+				self.collec.update_one({"guild_id" : ctx.guild.id, "user_id" : ctx.author.id}, {"$inc" : {"cash" : -self.coll.find_one({"guild_id" : ctx.guild.id, "role_id" : role.id})["cost"]}})
 				await ctx.author.add_roles(role)
 				await ctx.send("Well, you bought the indicated role")
 
